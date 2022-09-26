@@ -1,0 +1,23 @@
+.navbar {
+    width: 15vw;
+    min-width: 20rem;
+    background-color: var(--nav-bkg-color);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.nav-section {
+    color: var(--nav-font-color);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.nav-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--nav-font-color);
+    font-weight: 500;
+    font-size: 1.5rem;
+}

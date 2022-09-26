@@ -1,0 +1,27 @@
+:root {
+    font-size: 10px;
+    --content-bkg-color: #eee;
+    --nav-bkg-color: #ddd;
+    --header-bkg-color: #333;
+    --font-color: #222;
+    --nav-font-color: #333;
+    --header-font-color: #eee;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    display: flex;
+    flex: 1;
+}
