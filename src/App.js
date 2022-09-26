@@ -1,7 +1,8 @@
 import React from "react";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Content from "./components/Content/Content";
+import ContentAdd from "./components/ContentAdd/ContentAdd";
+import ContentSearch from "./components/ContentSearch/ContentSearch";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { showAddSection, showSearchSection } from "./actions";
@@ -15,16 +16,8 @@ function App() {
         <div className="App">
             <Header />
             <main className="main-content">
-                <Sidebar
-                    searchSection={isSearchSectionShown}
-                    addSection={isAddSectionShown}
-                />
-                <Content />
-                {isSearchSectionShown ? (
-                    <h1>This is search section</h1>
-                ) : (
-                    <h1>This is add section</h1>
-                )}
+                <Sidebar />
+                {isSearchSectionShown ? <ContentSearch /> : <ContentAdd />}
             </main>
         </div>
     );
