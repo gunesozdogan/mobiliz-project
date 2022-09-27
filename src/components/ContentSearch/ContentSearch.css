@@ -2,3 +2,54 @@
     background-color: var(--content-bkg-color);
     flex: 1;
 }
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    min-width: 40rem;
+    gap: 1rem;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.search-input {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #999999;
+    font-weight: 500;
+    font-size: 1.4rem;
+    height: 4rem;
+    color: var(--text-color);
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-btn {
+    padding: 0.6rem;
+    background-color: var(--helper-color);
+    cursor: pointer;
+    border: 1px solid #444;
+    font-weight: 500;
+    color: #fff;
+    font-size: 1.4rem;
+    border-radius: 1rem;
+}
+
+.search-btn:hover {
+    background-color: var(--helper-hover-color);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.visible {
+    color: red;
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: center;
+}

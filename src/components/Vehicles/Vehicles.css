@@ -1,0 +1,59 @@
+.vehicle-list {
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+.vehicle-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    min-width: 20rem;
+    word-wrap: break-word;
+}
+
+.vehicle-list-item:hover {
+    background-color: var(--nav-bkg-color);
+}
+
+.left-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.vehicle-item-delete {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+    border: 2px solid var(--helper-color);
+    cursor: pointer;
+    min-width: 2rem;
+}
+
+.vehicle-item-delete:hover {
+    background-color: var(--helper-color);
+}
+
+.vehicle-item-edit {
+    background-color: transparent;
+    border: none;
+    color: var(--helper-color);
+    font-weight: 500;
+    font-size: 1.4rem;
+    justify-self: end;
+    padding-right: 4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+}
+
+.vehicle-item-edit:hover {
+    background-color: var(--helper-color);
+    color: #fff;
+}

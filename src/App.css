@@ -3,9 +3,12 @@
     --content-bkg-color: #eee;
     --nav-bkg-color: #ddd;
     --header-bkg-color: #333;
-    --font-color: #222;
-    --nav-font-color: #333;
-    --header-font-color: #eee;
+    --text-color: #222;
+    --nav-text-color: #333;
+    --nav-hover-color: rgb(194, 192, 192);
+    --header-text-color: #eee;
+    --helper-color: #ee6c4d;
+    --helper-hover-color: rgb(218, 94, 49);
 }
 
 * {
@@ -13,12 +16,20 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 
 .App {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    min-width: 65rem;
 }
 
 .main-content {

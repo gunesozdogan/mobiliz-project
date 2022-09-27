@@ -1,23 +1,42 @@
 .navbar {
     width: 15vw;
-    min-width: 20rem;
+    min-width: 25rem;
     background-color: var(--nav-bkg-color);
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 2rem;
     padding: 2rem;
 }
 
 .nav-section {
-    color: var(--nav-font-color);
+    color: var(--nav-text-color);
     background-color: transparent;
-    cursor: pointer;
+    border-radius: 1rem;
+    width: 100%;
 }
 
 .nav-btn {
     background-color: transparent;
     border: none;
-    color: var(--nav-font-color);
+    color: var(--nav-text-color);
     font-weight: 500;
     font-size: 1.5rem;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 3rem;
+    border-radius: 1rem;
+}
+
+.nav-btn:hover {
+    background-color: var(--nav-hover-color);
+}
+
+.nav-btn svg {
+    height: 2rem;
+    width: 2rem;
 }
