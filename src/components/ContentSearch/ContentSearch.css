@@ -1,6 +1,7 @@
 .search-vehicles-section {
     background-color: var(--content-bkg-color);
-    flex: 1;
+    max-width: 300rem;
+    width: 70vw;
 }
 
 .search-container {
@@ -16,7 +17,7 @@
 .search-input {
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    border: 1px solid #999999;
+    border: 1px solid var(--border-color);
     font-weight: 500;
     font-size: 1.4rem;
     height: 4rem;

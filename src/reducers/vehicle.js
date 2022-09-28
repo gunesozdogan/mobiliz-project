@@ -15,4 +15,15 @@ const vehicleReducer = (state = [], action) => {
     }
 };
 
-export default vehicleReducer;
+const currentEditVehicleReducer = (state = "", action) => {
+    switch (action.type) {
+        case "updateVehicleEdit":
+            return {
+                vehicle: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export { vehicleReducer, currentEditVehicleReducer };

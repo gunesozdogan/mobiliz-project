@@ -18,6 +18,7 @@ function ContentSearch() {
     const dispatch = useDispatch();
     const errorMessageRef = useRef(null);
 
+    // displays related vehicles according to search inputs
     const handleClick = useCallback(async () => {
         // show inputValidation
         if (!plateInput && !brandInput && !modelInput) {
@@ -34,8 +35,12 @@ function ContentSearch() {
             ? `model=${modelInput}&`
             : "";
         str = str.slice(0, -1);
-        const data = await myAPIModule.getVehicles(str);
-        dispatch(updateCurrentVehicles(data));
+        try {
+            const data = await myAPIModule.getVehicles(str);
+            dispatch(updateCurrentVehicles(data));
+        } catch (err) {
+            console.log(err);
+        }
     }, [plateInput, brandInput, modelInput, dispatch, myAPIModule]);
 
     return (

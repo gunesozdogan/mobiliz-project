@@ -24,6 +24,10 @@
     gap: 1rem;
 }
 
+.vehicle-item-text {
+    max-width: 20rem;
+}
+
 .vehicle-item-delete {
     height: 2rem;
     width: 2rem;
@@ -31,6 +35,7 @@
     border: 2px solid var(--helper-color);
     cursor: pointer;
     min-width: 2rem;
+    background-color: transparent;
 }
 
 .vehicle-item-delete:hover {

@@ -1,4 +1,4 @@
-:root {
+/* :root {
     font-size: 10px;
     --content-bkg-color: #eee;
     --nav-bkg-color: #ddd;
@@ -9,6 +9,23 @@
     --header-text-color: #eee;
     --helper-color: #ee6c4d;
     --helper-hover-color: rgb(218, 94, 49);
+    --border-color: #999999;
+} */
+
+:root {
+    font-size: 10px;
+    --content-bkg-color: #fff;
+    --nav-bkg-color: #f7f7f7;
+    --header-bkg-color: #3d5a80;
+    --text-color: #293241;
+    --nav-text-color: #333;
+    --nav-hover-color: #ebe9e9;
+    --header-text-color: #eee;
+    --helper-color: rgb(238, 108, 77);
+    --helper-hover-color: rgb(196, 78, 36);
+    --header-hover-color: #466a99;
+    --border-color: #4e4e50;
+    --form-bkg-color: #f7f7f7;
 }
 
 * {
@@ -35,4 +52,23 @@
 .main-content {
     display: flex;
     flex: 1;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0%;
+    height: 100%;
+    width: 100%;
+    z-index: 8000;
+    background-color: transparent;
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.199);
 }

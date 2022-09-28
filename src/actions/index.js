@@ -44,3 +44,16 @@ export const deleteVehicle = val => {
         payload: val,
     };
 };
+
+export const toggleEditPage = () => {
+    return {
+        type: "toggle",
+    };
+};
+
+export const updateCurrentVehicleEdit = val => {
+    return {
+        type: "updateVehicleEdit",
+        payload: val,
+    };
+};

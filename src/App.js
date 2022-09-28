@@ -5,12 +5,26 @@ import ContentAdd from "./components/ContentAdd/ContentAdd";
 import ContentSearch from "./components/ContentSearch/ContentSearch";
 import "./App.css";
 import { useSelector } from "react-redux";
-import Vehicles from "./components/Vehicles/Vehicles";
+import EditPage from "./components/EditPage/EditPage";
 
 function App() {
     const isSearchSectionShown = useSelector(state => state.isShown.search);
+    const isEditPageShown = useSelector(state => state.isEditPageShown);
+    const curVehicleEdit = useSelector(state => state.currentVehicleEdit);
     return (
         <div className="App">
+            <div className={isEditPageShown ? "overlay" : "overlay hidden"}>
+                {isEditPageShown ? (
+                    <EditPage
+                        model={curVehicleEdit.vehicle.model}
+                        brand={curVehicleEdit.vehicle.brand}
+                        plate={curVehicleEdit.vehicle.plate}
+                        id={curVehicleEdit.vehicle.id}
+                    />
+                ) : (
+                    ""
+                )}{" "}
+            </div>
             <Header />
             <main className="main-content">
                 <Sidebar />
