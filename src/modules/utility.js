@@ -21,7 +21,11 @@ const myUtility = (function () {
         return vehicles;
     }
 
-    return { editVehicle };
+    function Vehicle(modelYear, model, brand, plate, notes) {
+        return { plate, brand, model, modelYear, notes };
+    }
+
+    return { editVehicle, Vehicle };
 })();
 
 export default myUtility;

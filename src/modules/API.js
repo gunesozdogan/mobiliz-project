@@ -15,7 +15,7 @@ const myAPI = (function () {
         const data = await response.json();
         return data;
     }
-    async function deleteVehicle(id) {
+    async function deleteSearchedVehicle(id) {
         fetch(
             `https://test001.testnet.mobiliz.com.tr/interview/vehicles/${id}`,
             {
@@ -30,7 +30,7 @@ const myAPI = (function () {
         );
     }
 
-    return { getVehicles, deleteVehicle };
+    return { getVehicles, deleteSearchedVehicle };
 })();
 
 export default myAPI;

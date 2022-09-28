@@ -1,10 +1,10 @@
-const editPageReducer = (state = false, action) => {
+const editFormReducer = (state = false, action) => {
     switch (action.type) {
-        case "toggle":
+        case "toggleEdit":
             return !state;
         default:
             return state;
     }
 };
 
-export default editPageReducer;
+export default editFormReducer;

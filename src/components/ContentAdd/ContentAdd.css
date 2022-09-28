@@ -1,4 +1,5 @@
 .add-vehicles-section {
     background-color: var(--content-bkg-color);
-    flex: 1;
+    max-width: 300rem;
+    width: 70vw;
 }

@@ -1,29 +1,58 @@
-const vehicleReducer = (state = [], action) => {
+const searchedVehicleReducer = (state = [], action) => {
     switch (action.type) {
-        case "update":
+        case "updateSearched":
             return {
                 vehicles: action.payload,
             };
-        case "delete":
+        case "deleteSearched":
             return {
                 vehicles: state.vehicles.filter(
                     vehicle => vehicle.id !== action.payload
                 ),
             };
-        default:
-            return state;
-    }
-};
-
-const currentEditVehicleReducer = (state = "", action) => {
-    switch (action.type) {
-        case "updateVehicleEdit":
+        case "resetSearched":
             return {
-                vehicle: action.payload,
+                vehicles: [],
             };
         default:
             return state;
     }
 };
 
-export { vehicleReducer, currentEditVehicleReducer };
+const editedVehicleReducer = (state = "", action) => {
+    switch (action.type) {
+        case "updateEdited":
+            return {
+                vehicle: action.payload,
+            };
+        case "resetEdited":
+            return {
+                vehicle: [],
+            };
+        default:
+            return state;
+    }
+};
+
+const addedVehicleReducer = (state = [], action) => {
+    switch (action.type) {
+        case "updateAdded":
+            return {
+                vehicles: action.payload,
+            };
+        case "deleteAdded":
+            return {
+                vehicles: state.vehicles.filter(
+                    vehicle => vehicle.id !== action.payload
+                ),
+            };
+        case "resetAdded":
+            return {
+                vehicles: [],
+            };
+        default:
+            return state;
+    }
+};
+
+export { searchedVehicleReducer, editedVehicleReducer, addedVehicleReducer };

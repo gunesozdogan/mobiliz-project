@@ -1,10 +1,10 @@
 import React, { useCallback, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./EditPage.css";
+import "./EditForm.css";
 import myUtility from "../../modules/utility";
-import { updateCurrentVehicles, toggleEditPage } from "../../actions";
+import { updateSearchedVehicles, toggleEditForm } from "../../actions";
 
-export default function EditPage(props) {
+export default function EditForm(props) {
     const myUtilityFunctions = myUtility;
     const dispatch = useDispatch();
     const modelYearRef = useRef(null);
@@ -14,7 +14,7 @@ export default function EditPage(props) {
     const notesRef = useRef(null);
 
     const searchedVehicles = useSelector(
-        state => state.currentVehicles.vehicles
+        state => state.searchedVehicles.vehicles
     );
 
     // edits vehicle item in redux store and closes the edit form
@@ -28,17 +28,17 @@ export default function EditPage(props) {
             notesRef.current.value,
             searchedVehicles
         );
-        dispatch(updateCurrentVehicles(updatedVehicles));
-        dispatch(toggleEditPage());
+        dispatch(updateSearchedVehicles(updatedVehicles));
+        dispatch(toggleEditForm());
     }, [myUtilityFunctions, props.id, searchedVehicles, dispatch]);
 
     // handles cancel button
     const handleCancelClick = useCallback(() => {
-        dispatch(toggleEditPage());
+        dispatch(toggleEditForm());
     }, [dispatch]);
 
     return (
-        <form spellCheck="false" className="edit-page">
+        <form spellCheck="false" className="edit-form">
             <div className="input-container">
                 <label htmlFor="modelYear">Model Year</label>
                 <input

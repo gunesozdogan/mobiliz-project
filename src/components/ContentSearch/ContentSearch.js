@@ -5,7 +5,7 @@ import {
     updatePlateInput,
     updateBrandInput,
     updateModelInput,
-    updateCurrentVehicles,
+    updateSearchedVehicles,
 } from "../../actions";
 import Vehicles from "../Vehicles/Vehicles";
 import myAPI from "../../modules/API";
@@ -37,7 +37,7 @@ function ContentSearch() {
         str = str.slice(0, -1);
         try {
             const data = await myAPIModule.getVehicles(str);
-            dispatch(updateCurrentVehicles(data));
+            dispatch(updateSearchedVehicles(data));
         } catch (err) {
             console.log(err);
         }

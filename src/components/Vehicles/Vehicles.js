@@ -2,24 +2,24 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Vehicles.css";
 import {
-    deleteVehicle,
-    toggleEditPage,
-    updateCurrentVehicleEdit,
+    deleteSearchedVehicle,
+    toggleEditForm,
+    updateEditedVehicle,
 } from "../../actions";
 import myAPI from "../../modules/API";
 
 export default function Vehicles() {
     const myAPIModule = myAPI;
-    const vehicleData = useSelector(state => state.currentVehicles);
+    const vehicleData = useSelector(state => state.searchedVehicles);
     const dispatch = useDispatch();
 
     // Displays edit page and uses edited vehicle properties as default values
     const handleClick = useCallback(
         e => {
             const parent = e.target.parentNode;
-            dispatch(toggleEditPage());
+            dispatch(toggleEditForm());
             dispatch(
-                updateCurrentVehicleEdit(
+                updateEditedVehicle(
                     vehicleData.vehicles.find(vehicle => {
                         return (
                             vehicle.id ===
@@ -48,9 +48,11 @@ export default function Vehicles() {
                                       <button
                                           onClick={e => {
                                               dispatch(
-                                                  deleteVehicle(vehicle.id)
+                                                  deleteSearchedVehicle(
+                                                      vehicle.id
+                                                  )
                                               );
-                                              myAPIModule.deleteVehicle(
+                                              myAPIModule.deleteSearchedVehicle(
                                                   vehicle.id
                                               );
                                           }}

@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./Sidebar.css";
 import { useDispatch } from "react-redux";
-import { showAddSection, showSearchSection } from "../../actions";
+import {
+    showAddSection,
+    showSearchSection,
+    resetSearchedVehicles,
+    resetEditedVehicle,
+} from "../../actions";
 
 export default function Sidebar(props) {
     const dispatch = useDispatch();
+
+    // Displays add vehicle section and resets searched and edited vehicles in store
+    const displayAddVehicleSection = useCallback(() => {
+        dispatch(showAddSection());
+        dispatch(resetSearchedVehicles());
+        dispatch(resetEditedVehicle());
+    }, [dispatch]);
 
     return (
         <div className="navbar">
@@ -28,7 +40,7 @@ export default function Sidebar(props) {
             </div>
             <div className="nav-add nav-section">
                 <button
-                    onClick={() => dispatch(showAddSection())}
+                    onClick={displayAddVehicleSection}
                     className="nav-add-btn nav-btn"
                 >
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

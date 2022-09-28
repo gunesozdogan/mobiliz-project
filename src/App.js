@@ -5,17 +5,25 @@ import ContentAdd from "./components/ContentAdd/ContentAdd";
 import ContentSearch from "./components/ContentSearch/ContentSearch";
 import "./App.css";
 import { useSelector } from "react-redux";
-import EditPage from "./components/EditPage/EditPage";
+import EditForm from "./components/EditForm/EditForm";
+import AddForm from "./components/AddForm/AddForm";
 
 function App() {
     const isSearchSectionShown = useSelector(state => state.isShown.search);
-    const isEditPageShown = useSelector(state => state.isEditPageShown);
-    const curVehicleEdit = useSelector(state => state.currentVehicleEdit);
+    const isEditFormShown = useSelector(state => state.isEditFormShown);
+    const isAddFormShown = useSelector(state => state.isAddFormShown);
+    const curVehicleEdit = useSelector(state => state.editedVehicle);
     return (
         <div className="App">
-            <div className={isEditPageShown ? "overlay" : "overlay hidden"}>
-                {isEditPageShown ? (
-                    <EditPage
+            <div
+                className={
+                    isEditFormShown || isAddFormShown
+                        ? "overlay"
+                        : "overlay hidden"
+                }
+            >
+                {isEditFormShown ? (
+                    <EditForm
                         modelYear={curVehicleEdit.vehicle.modelYear}
                         model={curVehicleEdit.vehicle.model}
                         brand={curVehicleEdit.vehicle.brand}
@@ -25,7 +33,8 @@ function App() {
                     />
                 ) : (
                     ""
-                )}{" "}
+                )}
+                {isAddFormShown ? <AddForm /> : ""}
             </div>
             <Header />
             <main className="main-content">
