@@ -57,8 +57,11 @@ export default function Vehicles() {
                                           className="vehicle-item-delete"
                                       ></button>
                                       <span className="vehicle-item-text">
-                                          {vehicle.model} - {vehicle.brand} -{" "}
-                                          {vehicle.plate}
+                                          {vehicle.modelYear} - {vehicle.model}-{" "}
+                                          {vehicle.brand} - {vehicle.plate}
+                                          {vehicle.notes
+                                              ? " (" + vehicle.notes + ")"
+                                              : ""}
                                       </span>
                                   </div>
                                   <button

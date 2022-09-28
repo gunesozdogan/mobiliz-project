@@ -16,9 +16,11 @@ function App() {
             <div className={isEditPageShown ? "overlay" : "overlay hidden"}>
                 {isEditPageShown ? (
                     <EditPage
+                        modelYear={curVehicleEdit.vehicle.modelYear}
                         model={curVehicleEdit.vehicle.model}
                         brand={curVehicleEdit.vehicle.brand}
                         plate={curVehicleEdit.vehicle.plate}
+                        notes={curVehicleEdit.vehicle.notes}
                         id={curVehicleEdit.vehicle.id}
                     />
                 ) : (

@@ -7,9 +7,11 @@ import { updateCurrentVehicles, toggleEditPage } from "../../actions";
 export default function EditPage(props) {
     const myUtilityFunctions = myUtility;
     const dispatch = useDispatch();
+    const modelYearRef = useRef(null);
     const modelRef = useRef(null);
     const brandRef = useRef(null);
     const plateRef = useRef(null);
+    const notesRef = useRef(null);
 
     const searchedVehicles = useSelector(
         state => state.currentVehicles.vehicles
@@ -19,9 +21,11 @@ export default function EditPage(props) {
     const handleEditClick = useCallback(() => {
         const updatedVehicles = myUtilityFunctions.editVehicle(
             props.id,
+            modelYearRef.current.value,
             modelRef.current.value,
             brandRef.current.value,
             plateRef.current.value,
+            notesRef.current.value,
             searchedVehicles
         );
         dispatch(updateCurrentVehicles(updatedVehicles));
@@ -35,6 +39,17 @@ export default function EditPage(props) {
 
     return (
         <form spellCheck="false" className="edit-page">
+            <div className="input-container">
+                <label htmlFor="modelYear">Model Year</label>
+                <input
+                    ref={modelYearRef}
+                    className="input"
+                    id="modelYear"
+                    type="text"
+                    defaultValue={props.modelYear}
+                />
+            </div>
+
             <div className="input-container">
                 <label htmlFor="model">Model</label>
                 <input
@@ -65,6 +80,17 @@ export default function EditPage(props) {
                     id="plate"
                     type="text"
                     defaultValue={props.plate}
+                />
+            </div>
+
+            <div className="input-container">
+                <label htmlFor="notes">Notes</label>
+                <input
+                    ref={notesRef}
+                    className="input"
+                    id="notes"
+                    type="text"
+                    defaultValue={props.notes}
                 />
             </div>
 
