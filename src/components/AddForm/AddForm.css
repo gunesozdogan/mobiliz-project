@@ -30,7 +30,7 @@
     width: 100%;
     border: 1px solid var(--border-color);
     border-radius: 1rem;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.4rem;
 }
 
@@ -59,7 +59,7 @@
     font-weight: 500;
 }
 
-.add-form-edit-btn:hover {
+.add-form-add-btn:hover {
     background-color: var(--helper-hover-color);
 }
 
@@ -69,4 +69,11 @@
 
 .add-form-cancel-btn:hover {
     background-color: var(--header-hover-color);
+}
+
+.add-vehicle-error-msg {
+    color: red;
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 500;
 }

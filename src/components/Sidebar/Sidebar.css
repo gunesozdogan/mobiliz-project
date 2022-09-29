@@ -40,3 +40,8 @@
     height: 2rem;
     width: 2rem;
 }
+
+[data-theme="dark"] .nav-search-icon,
+[data-theme="dark"] .nav-add-icon {
+    fill: #fff;
+}

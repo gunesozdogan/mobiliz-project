@@ -26,6 +26,7 @@
 
 .vehicle-item-text {
     max-width: 20rem;
+    color: var(--text-color);
 }
 
 .vehicle-item-delete {

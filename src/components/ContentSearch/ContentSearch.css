@@ -21,7 +21,7 @@
     font-weight: 500;
     font-size: 1.4rem;
     height: 4rem;
-    color: var(--text-color);
+    color: #222;
 }
 
 .search-input:focus {

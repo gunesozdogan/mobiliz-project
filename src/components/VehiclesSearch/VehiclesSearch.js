@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./VehiclesEdit.css";
+import "./VehiclesSearch.css";
 import {
     deleteSearchedVehicle,
     toggleEditForm,
@@ -8,7 +8,7 @@ import {
 } from "../../actions";
 import myAPI from "../../modules/API";
 
-export default function VehiclesEdit() {
+export default function VehiclesSearch() {
     const myAPIModule = myAPI;
     const vehicleData = useSelector(state => state.searchedVehicles);
     const dispatch = useDispatch();

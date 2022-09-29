@@ -8,8 +8,8 @@ import {
     updateSearchedVehicles,
     toggleLoader,
 } from "../../actions";
-import VehiclesEdit from "../VehiclesEdit/VehiclesEdit";
 import myAPI from "../../modules/API";
+import VehiclesSearch from "../VehiclesSearch/VehiclesSearch";
 
 function ContentSearch() {
     const myAPIModule = myAPI;
@@ -56,6 +56,7 @@ function ContentSearch() {
                     type="text"
                     placeholder="Plate"
                     className="plate-input search-input"
+                    autoComplete="off"
                 />
                 <input
                     onChange={e => dispatch(updateBrandInput(e.target.value))}
@@ -63,6 +64,7 @@ function ContentSearch() {
                     type="text"
                     placeholder="Brand"
                     className="brand-input search-input"
+                    autoComplete="off"
                 />
                 <input
                     onChange={e => dispatch(updateModelInput(e.target.value))}
@@ -70,6 +72,7 @@ function ContentSearch() {
                     type="text"
                     placeholder="Model"
                     className="model-input search-input"
+                    autoComplete="off"
                 />
                 <button onClick={handleClick} className="search-btn">
                     Search Vehicle
@@ -77,7 +80,7 @@ function ContentSearch() {
                 <div ref={errorMessageRef} className="hidden">
                     <p>At least one of the parameters should be entered!</p>
                 </div>
-                <VehiclesEdit />
+                <VehiclesSearch />
             </div>
         </div>
     );

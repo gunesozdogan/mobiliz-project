@@ -47,6 +47,7 @@ export default function EditForm(props) {
                     id="modelYear"
                     type="text"
                     defaultValue={props.modelYear}
+                    autoComplete="off"
                 />
             </div>
 
@@ -58,6 +59,7 @@ export default function EditForm(props) {
                     id="model"
                     type="text"
                     defaultValue={props.model}
+                    autoComplete="off"
                 />
             </div>
 
@@ -69,6 +71,7 @@ export default function EditForm(props) {
                     id="brand"
                     type="text"
                     defaultValue={props.brand}
+                    autoComplete="off"
                 />
             </div>
 
@@ -80,6 +83,7 @@ export default function EditForm(props) {
                     id="plate"
                     type="text"
                     defaultValue={props.plate}
+                    autoComplete="off"
                 />
             </div>
 
@@ -91,6 +95,7 @@ export default function EditForm(props) {
                     id="notes"
                     type="text"
                     defaultValue={props.notes}
+                    autoComplete="off"
                 />
             </div>
 

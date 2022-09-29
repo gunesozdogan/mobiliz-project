@@ -18,6 +18,10 @@
     background-color: var(--nav-bkg-color);
 }
 
+[data-theme="dark"] .vehicle-list-item:hover {
+    background-color: #444;
+}
+
 .left-container {
     display: flex;
     align-items: center;

@@ -8,6 +8,11 @@ import {
     resetEditedVehicle,
     resetAddedVehicles,
 } from "../../actions";
+import {
+    updateBrandInput,
+    updatePlateInput,
+    updateModelInput,
+} from "../../actions";
 
 export default function Sidebar(props) {
     const dispatch = useDispatch();
@@ -17,6 +22,10 @@ export default function Sidebar(props) {
         dispatch(showAddSection());
         dispatch(resetSearchedVehicles());
         dispatch(resetEditedVehicle());
+        // resets search inputs
+        dispatch(updateBrandInput());
+        dispatch(updatePlateInput());
+        dispatch(updateModelInput());
     }, [dispatch]);
 
     // Displays search vehicle section and resets added and edited vehicles in store
@@ -51,7 +60,11 @@ export default function Sidebar(props) {
                     onClick={displayAddVehicleSection}
                     className="nav-add-btn nav-btn"
                 >
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                        className="nav-add-icon"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
                         <g>
                             <path d="M0 0h24v24H0z" fill="none" />
                             <path d="M2 18h10v2H2v-2zm0-7h20v2H2v-2zm0-7h20v2H2V4zm16 14v-3h2v3h3v2h-3v3h-2v-3h-3v-2h3z" />

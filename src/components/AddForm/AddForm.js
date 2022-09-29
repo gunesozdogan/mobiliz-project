@@ -13,9 +13,20 @@ export default function AddForm(props) {
     const brandRef = useRef(null);
     const plateRef = useRef(null);
     const notesRef = useRef(null);
+    const errorRef = useRef(null);
 
     // edits vehicle item in redux store and closes the edit form
     const handleAddClick = useCallback(() => {
+        if (
+            !modelRef.current.value ||
+            !modelYearRef.current.value ||
+            !brandRef.current.value ||
+            !plateRef.current.value ||
+            !notesRef.current.value
+        ) {
+            errorRef.current.className = "add-vehicle-error-msg";
+            return;
+        }
         const newVehicle = myUtilityFunctions.Vehicle(
             modelYearRef.current.value,
             modelRef.current.value,
@@ -42,6 +53,7 @@ export default function AddForm(props) {
                     id="modelYear"
                     type="text"
                     defaultValue={props.modelYear}
+                    autoComplete="off"
                 />
             </div>
 
@@ -53,6 +65,7 @@ export default function AddForm(props) {
                     id="model"
                     type="text"
                     defaultValue={props.model}
+                    autoComplete="off"
                 />
             </div>
 
@@ -64,6 +77,7 @@ export default function AddForm(props) {
                     id="brand"
                     type="text"
                     defaultValue={props.brand}
+                    autoComplete="off"
                 />
             </div>
 
@@ -75,6 +89,7 @@ export default function AddForm(props) {
                     id="plate"
                     type="text"
                     defaultValue={props.plate}
+                    autoComplete="off"
                 />
             </div>
 
@@ -86,6 +101,7 @@ export default function AddForm(props) {
                     id="notes"
                     type="text"
                     defaultValue={props.notes}
+                    autoComplete="off"
                 />
             </div>
 
@@ -105,6 +121,9 @@ export default function AddForm(props) {
                     Cancel
                 </button>
             </div>
+            <span ref={errorRef} className="add-vehicle-error-msg hidden">
+                Please fill every parameter!
+            </span>
         </form>
     );
 }
