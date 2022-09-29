@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { createStore } from "redux";
 import allReducers from "./reducers";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 
 const myStore = createStore(
     allReducers,
@@ -11,6 +11,7 @@ const myStore = createStore(
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
     <Provider store={myStore}>
         <React.StrictMode>

@@ -89,6 +89,12 @@ export const toggleLoader = () => {
     };
 };
 
+export const toggleThemeColor = () => {
+    return {
+        type: "toggleThemeColor",
+    };
+};
+
 // updates state for vehicle that is only being edited
 export const updateEditedVehicle = val => {
     return {

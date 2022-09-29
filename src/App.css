@@ -1,17 +1,3 @@
-/* :root {
-    font-size: 10px;
-    --content-bkg-color: #eee;
-    --nav-bkg-color: #ddd;
-    --header-bkg-color: #333;
-    --text-color: #222;
-    --nav-text-color: #333;
-    --nav-hover-color: rgb(194, 192, 192);
-    --header-text-color: #eee;
-    --helper-color: #ee6c4d;
-    --helper-hover-color: rgb(218, 94, 49);
-    --border-color: #999999;
-} */
-
 :root {
     font-size: 10px;
     --content-bkg-color: #fff;
@@ -26,6 +12,21 @@
     --header-hover-color: #466a99;
     --border-color: #4e4e50;
     --form-bkg-color: #f7f7f7;
+}
+
+[data-theme="dark"] {
+    --content-bkg-color: #121212;
+    --nav-bkg-color: #121212;
+    --header-bkg-color: #222;
+    --text-color: #eee;
+    --nav-text-color: #eee;
+    --nav-hover-color: #222;
+    --header-text-color: #fff;
+    --helper-color: #c3073f;
+    --helper-hover-color: rgb(196, 78, 36);
+    --header-hover-color: #466a99;
+    --border-color: #4e4e50;
+    --form-bkg-color: #222;
 }
 
 * {
@@ -52,6 +53,7 @@
 .main-content {
     display: flex;
     flex: 1;
+    background-color: var(--content-bkg-color);
 }
 
 .overlay {

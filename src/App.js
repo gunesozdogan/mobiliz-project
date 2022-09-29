@@ -14,9 +14,10 @@ function App() {
     const isAddFormShown = useSelector(state => state.isAddFormShown);
     const curVehicleEdit = useSelector(state => state.editedVehicle);
     const isLoaderShown = useSelector(state => state.isLoaderShown);
+    const themeColor = useSelector(state => state.themeColor);
 
     return (
-        <div className="App">
+        <div className="App" data-theme={themeColor}>
             <div
                 className={
                     isEditFormShown || isAddFormShown || isLoaderShown

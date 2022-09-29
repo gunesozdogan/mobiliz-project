@@ -8,6 +8,7 @@ import {
 import editFormReducer from "./toggleEdit";
 import addFormReducer from "./toggleAdd";
 import loaderReducer from "./toggleLoader";
+import themeColorReducer from "./themeColor";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
     isLoaderShown: loaderReducer,
     isEditFormShown: editFormReducer,
     isAddFormShown: addFormReducer,
+    themeColor: themeColorReducer,
     searchInput: inputReducer,
     searchedVehicles: searchedVehicleReducer,
     addedVehicles: addedVehicleReducer,
