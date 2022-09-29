@@ -6,6 +6,7 @@ import {
     updateBrandInput,
     updateModelInput,
     updateSearchedVehicles,
+    toggleLoader,
 } from "../../actions";
 import VehiclesEdit from "../VehiclesEdit/VehiclesEdit";
 import myAPI from "../../modules/API";
@@ -35,9 +36,12 @@ function ContentSearch() {
             ? `model=${modelInput}&`
             : "";
         str = str.slice(0, -1);
+        dispatch(toggleLoader());
+
         try {
             const data = await myAPIModule.getVehicles(str);
             dispatch(updateSearchedVehicles(data));
+            dispatch(toggleLoader());
         } catch (err) {
             console.log(err);
         }

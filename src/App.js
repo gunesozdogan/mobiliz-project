@@ -13,15 +13,20 @@ function App() {
     const isEditFormShown = useSelector(state => state.isEditFormShown);
     const isAddFormShown = useSelector(state => state.isAddFormShown);
     const curVehicleEdit = useSelector(state => state.editedVehicle);
+    const isLoaderShown = useSelector(state => state.isLoaderShown);
+
     return (
         <div className="App">
             <div
                 className={
-                    isEditFormShown || isAddFormShown
+                    isEditFormShown || isAddFormShown || isLoaderShown
                         ? "overlay"
                         : "overlay hidden"
                 }
             >
+                <div
+                    className={isLoaderShown ? "loader" : "loader hidden"}
+                ></div>
                 {isEditFormShown ? (
                     <EditForm
                         modelYear={curVehicleEdit.vehicle.modelYear}

@@ -7,10 +7,12 @@ import {
 } from "./vehicle";
 import editFormReducer from "./toggleEdit";
 import addFormReducer from "./toggleAdd";
+import loaderReducer from "./toggleLoader";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
     isShown: switchShownSectionReducer,
+    isLoaderShown: loaderReducer,
     isEditFormShown: editFormReducer,
     isAddFormShown: addFormReducer,
     searchInput: inputReducer,

@@ -72,3 +72,26 @@
     gap: 3rem;
     box-shadow: 2px 2px 25px 2px rgba(0, 0, 0, 0.199);
 }
+
+/* Loading icon*/
+.loader {
+    border: 16px solid var(--header-bkg-color);
+    border-top: 16px solid var(--helper-color);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -10%);
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -10%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -10%) rotate(360deg);
+    }
+}

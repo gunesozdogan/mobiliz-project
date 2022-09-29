@@ -83,6 +83,12 @@ export const toggleAddForm = () => {
     };
 };
 
+export const toggleLoader = () => {
+    return {
+        type: "toggleLoader",
+    };
+};
+
 // updates state for vehicle that is only being edited
 export const updateEditedVehicle = val => {
     return {
