@@ -53,7 +53,7 @@ export default function VehiclesSearch() {
                                                       vehicle.id
                                                   )
                                               );
-                                              myAPIModule.deleteSearchedVehicle(
+                                              myAPIModule.deleteVehicle(
                                                   vehicle.id
                                               );
                                           }}

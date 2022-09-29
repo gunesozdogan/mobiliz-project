@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import "./EditForm.css";
 import myUtility from "../../modules/utility";
 import { updateSearchedVehicles, toggleEditForm } from "../../actions";
+import myAPI from "../../modules/API";
 
 export default function EditForm(props) {
     const myUtilityFunctions = myUtility;
+    const myAPIModule = myAPI;
     const dispatch = useDispatch();
     const modelYearRef = useRef(null);
     const modelRef = useRef(null);
@@ -17,8 +19,17 @@ export default function EditForm(props) {
         state => state.searchedVehicles.vehicles
     );
 
-    // edits vehicle item in redux store and closes the edit form
-    const handleEditClick = useCallback(() => {
+    const displayRelatedModels = useCallback(async () => {
+        const editedBrand = brandRef.current.value;
+        const models = await myAPIModule.getBrandModels(editedBrand);
+
+        // creates dropdown selections
+        myUtilityFunctions.createDropdownArray(models, modelRef.current);
+    }, [myAPIModule, myUtilityFunctions]);
+
+    // edits vehicle item and closes the edit form
+    const handleEditClick = useCallback(async () => {
+        console.log(plateRef.current.value);
         const updatedVehicles = myUtilityFunctions.editVehicle(
             props.id,
             modelYearRef.current.value,
@@ -30,7 +41,24 @@ export default function EditForm(props) {
         );
         dispatch(updateSearchedVehicles(updatedVehicles));
         dispatch(toggleEditForm());
-    }, [myUtilityFunctions, props.id, searchedVehicles, dispatch]);
+
+        // gets the id corresponds to brand/model
+        const id = await myAPIModule.getModelID(
+            modelRef.current.value,
+            brandRef.current.value
+        );
+        console.log(plateRef.current.value);
+        console.log(plateRef);
+        // edited Vehicle object
+        const editedVehicle = {
+            modelID: id,
+            plate: plateRef.current.value,
+            modelYear: modelYearRef.current.value,
+            notes: notesRef.current.value,
+        };
+        // edits the vehicle object in the server
+        myAPIModule.editVehicle(props.id, editedVehicle);
+    }, [myUtilityFunctions, props.id, searchedVehicles, dispatch, myAPIModule]);
 
     // handles cancel button
     const handleCancelClick = useCallback(() => {
@@ -52,25 +80,26 @@ export default function EditForm(props) {
             </div>
 
             <div className="input-container">
-                <label htmlFor="model">Model</label>
-                <input
-                    ref={modelRef}
-                    className="input"
-                    id="model"
-                    type="text"
-                    defaultValue={props.model}
-                    autoComplete="off"
-                />
-            </div>
-
-            <div className="input-container">
                 <label htmlFor="brand">Brand</label>
                 <input
+                    onBlur={displayRelatedModels}
                     ref={brandRef}
                     className="input"
                     id="brand"
                     type="text"
                     defaultValue={props.brand}
+                    autoComplete="off"
+                />
+            </div>
+
+            <div className="input-container">
+                <label htmlFor="model">Model</label>
+                <select
+                    ref={modelRef}
+                    className="input"
+                    id="model"
+                    type="text"
+                    defaultValue={props.model}
                     autoComplete="off"
                 />
             </div>

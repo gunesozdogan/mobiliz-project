@@ -10,8 +10,8 @@
     --helper-color: rgb(238, 108, 77);
     --helper-hover-color: rgb(255, 126, 94);
     --header-hover-color: #466a99;
-    --border-color: #4e4e50;
-    --form-bkg-color: #f7f7f7;
+    --border-color: rgb(145, 145, 145);
+    --form-bkg-color: #fff;
 }
 
 [data-theme="dark"] {
