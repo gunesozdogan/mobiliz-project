@@ -26,9 +26,10 @@ const myUtility = (function () {
         return { plate, brand, model, modelYear, notes };
     }
 
-    function createDropdownArray(models, selectElement) {
+    function createDropdownArray(models, selectElement, value) {
         const arr = [];
         selectElement.options.length = 0;
+
         models.forEach(element => {
             arr.push({ text: element.model, value: element.model });
         });
@@ -38,6 +39,7 @@ const myUtility = (function () {
             selectElement.options.add(new Option(item.text, item.value))
         );
 
+        selectElement.defaultValue = value;
         return arr;
     }
 

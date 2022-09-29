@@ -1,11 +1,13 @@
 import React, { useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { toggleAddForm, updateAddedVehicles } from "../../actions";
+import myAPI from "../../modules/API";
 import myUtility from "../../modules/utility";
 import "./AddForm.css";
 
 export default function AddForm(props) {
     const myUtilityFunctions = myUtility;
+    const myAPIModule = myAPI;
 
     const dispatch = useDispatch();
     const modelYearRef = useRef(null);
@@ -13,10 +15,39 @@ export default function AddForm(props) {
     const brandRef = useRef(null);
     const plateRef = useRef(null);
     const notesRef = useRef(null);
-    const errorRef = useRef(null);
+    const missingParaErrorRef = useRef(null);
+    const modelYearErrorRef = useRef(null);
+    const brandErrorRef = useRef(null);
+
+    // displays models according to brand choice
+    const displayRelatedModels = useCallback(async () => {
+        try {
+            const editedBrand = brandRef.current.value;
+
+            if (editedBrand === "") {
+                brandErrorRef.current.className = "brand-error-msg";
+                return;
+            }
+            const models = await myAPIModule.getBrandModels(editedBrand);
+
+            if (models.length === 0) {
+                brandErrorRef.current.className = "brand-error-msg";
+                return;
+            }
+            // creates dropdown selections
+            myUtilityFunctions.createDropdownArray(
+                models,
+                modelRef.current,
+                modelRef.current.value
+            );
+        } catch (error) {
+            console.log(error);
+        }
+    }, [myAPIModule, myUtilityFunctions]);
 
     // edits vehicle item in redux store and closes the edit form
-    const handleAddClick = useCallback(() => {
+    const handleAddClick = useCallback(async () => {
+        // input validation
         if (
             !modelRef.current.value ||
             !modelYearRef.current.value ||
@@ -24,9 +55,35 @@ export default function AddForm(props) {
             !plateRef.current.value ||
             !notesRef.current.value
         ) {
-            errorRef.current.className = "add-vehicle-error-msg";
+            missingParaErrorRef.current.className =
+                "missing-parameter-error-msg";
+            modelYearErrorRef.current.className =
+                "modelyear-error-msg message-hidden";
+            brandErrorRef.current.className = "brand-error-msg message-hidden";
             return;
         }
+        if (
+            modelYearRef.current.value < 1930 ||
+            modelYearRef.current.value > 2022
+        ) {
+            modelYearErrorRef.current.className = "modelyear-error-msg";
+            missingParaErrorRef.current.className =
+                "missing-parameter-error-msg message-hidden";
+            brandErrorRef.current.className = "brand-error-msg message-hidden";
+            return;
+        }
+
+        const id = await myAPIModule.getModelID(
+            modelRef.current.value,
+            brandRef.current.value
+        );
+        const vehicleToAdd = {
+            modelId: id,
+            plate: plateRef.current.value,
+            modelYear: Number(modelYearRef.current.value),
+            notes: notesRef.current.value,
+        };
+        // adds new vehicle to redux store
         const newVehicle = myUtilityFunctions.Vehicle(
             modelYearRef.current.value,
             modelRef.current.value,
@@ -36,7 +93,9 @@ export default function AddForm(props) {
         );
         dispatch(updateAddedVehicles(newVehicle));
         dispatch(toggleAddForm());
-    }, [myUtilityFunctions, dispatch]);
+
+        myAPIModule.addVehicle(vehicleToAdd);
+    }, [myUtilityFunctions, dispatch, myAPIModule]);
 
     // handles cancel button
     const handleCancelClick = useCallback(() => {
@@ -58,18 +117,6 @@ export default function AddForm(props) {
             </div>
 
             <div className="input-container">
-                <label htmlFor="model">Model</label>
-                <input
-                    ref={modelRef}
-                    className="input"
-                    id="model"
-                    type="text"
-                    defaultValue={props.model}
-                    autoComplete="off"
-                />
-            </div>
-
-            <div className="input-container">
                 <label htmlFor="brand">Brand</label>
                 <input
                     ref={brandRef}
@@ -79,6 +126,20 @@ export default function AddForm(props) {
                     defaultValue={props.brand}
                     autoComplete="off"
                 />
+            </div>
+
+            <div className="input-container">
+                <label htmlFor="model">Model</label>
+                <select
+                    onFocus={displayRelatedModels}
+                    ref={modelRef}
+                    className="input"
+                    id="model"
+                    type="text"
+                    autoComplete="off"
+                >
+                    <option value={props.model}>{props.model}</option>
+                </select>
             </div>
 
             <div className="input-container">
@@ -121,8 +182,20 @@ export default function AddForm(props) {
                     Cancel
                 </button>
             </div>
-            <span ref={errorRef} className="add-vehicle-error-msg hidden">
+            <span
+                ref={missingParaErrorRef}
+                className="missing-parameter-error-msg message-hidden hidden"
+            >
                 Please fill every parameter!
+            </span>
+            <span
+                ref={modelYearErrorRef}
+                className="model-year-error-msg message-hidden hidden"
+            >
+                Model Year must be between 1930 and 2022!
+            </span>
+            <span ref={brandErrorRef} className="brand-error-msg hidden">
+                Brand is not found!
             </span>
         </form>
     );

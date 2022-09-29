@@ -14,22 +14,59 @@ export default function EditForm(props) {
     const brandRef = useRef(null);
     const plateRef = useRef(null);
     const notesRef = useRef(null);
-
+    const missingParaErrorRef = useRef(null);
+    const modelYearErrorRef = useRef(null);
     const searchedVehicles = useSelector(
         state => state.searchedVehicles.vehicles
     );
 
     const displayRelatedModels = useCallback(async () => {
-        const editedBrand = brandRef.current.value;
-        const models = await myAPIModule.getBrandModels(editedBrand);
+        try {
+            const editedBrand = brandRef.current.value;
+            const models = await myAPIModule.getBrandModels(editedBrand);
 
-        // creates dropdown selections
-        myUtilityFunctions.createDropdownArray(models, modelRef.current);
+            // creates dropdown selections
+            myUtilityFunctions.createDropdownArray(
+                models,
+                modelRef.current,
+                modelRef.current.value
+            );
+        } catch (error) {
+            console.log(error);
+        }
     }, [myAPIModule, myUtilityFunctions]);
 
     // edits vehicle item and closes the edit form
     const handleEditClick = useCallback(async () => {
-        console.log(plateRef.current.value);
+        // checks input validation
+        if (
+            modelYearRef.current.value < 1930 ||
+            modelYearRef.current.value > 2022
+        ) {
+            modelYearErrorRef.current.className = "modelyear-error-msg";
+            missingParaErrorRef.current.className =
+                "missing-parameter-error-msg message-hidden";
+            return;
+        }
+        if (
+            !modelYearRef.current.value ||
+            !modelRef.current.value ||
+            !brandRef.current.value ||
+            !plateRef.current.value ||
+            !notesRef.current.value
+        ) {
+            missingParaErrorRef.current.className =
+                "missing-parameter-error-msg";
+            modelYearErrorRef.current.className =
+                "modelyear-error-msg message-hidden";
+            return;
+        }
+        // gets the id corresponds to brand/model
+        const id = await myAPIModule.getModelID(
+            modelRef.current.value,
+            brandRef.current.value
+        );
+        // updatates the vehicles state locally
         const updatedVehicles = myUtilityFunctions.editVehicle(
             props.id,
             modelYearRef.current.value,
@@ -42,20 +79,14 @@ export default function EditForm(props) {
         dispatch(updateSearchedVehicles(updatedVehicles));
         dispatch(toggleEditForm());
 
-        // gets the id corresponds to brand/model
-        const id = await myAPIModule.getModelID(
-            modelRef.current.value,
-            brandRef.current.value
-        );
-        console.log(plateRef.current.value);
-        console.log(plateRef);
         // edited Vehicle object
         const editedVehicle = {
-            modelID: id,
+            modelId: id,
             plate: plateRef.current.value,
-            modelYear: modelYearRef.current.value,
+            modelYear: Number(modelYearRef.current.value),
             notes: notesRef.current.value,
         };
+
         // edits the vehicle object in the server
         myAPIModule.editVehicle(props.id, editedVehicle);
     }, [myUtilityFunctions, props.id, searchedVehicles, dispatch, myAPIModule]);
@@ -76,13 +107,15 @@ export default function EditForm(props) {
                     type="text"
                     defaultValue={props.modelYear}
                     autoComplete="off"
+                    min={1930}
+                    max={2022}
                 />
             </div>
 
             <div className="input-container">
                 <label htmlFor="brand">Brand</label>
                 <input
-                    onBlur={displayRelatedModels}
+                    // onBlur={displayRelatedModels}
                     ref={brandRef}
                     className="input"
                     id="brand"
@@ -95,13 +128,15 @@ export default function EditForm(props) {
             <div className="input-container">
                 <label htmlFor="model">Model</label>
                 <select
+                    onFocus={displayRelatedModels}
                     ref={modelRef}
                     className="input"
                     id="model"
                     type="text"
-                    defaultValue={props.model}
                     autoComplete="off"
-                />
+                >
+                    <option value={props.model}>{props.model}</option>
+                </select>
             </div>
 
             <div className="input-container">
@@ -144,6 +179,18 @@ export default function EditForm(props) {
                     Cancel
                 </button>
             </div>
+            <span
+                ref={missingParaErrorRef}
+                className="missing-parameter-error-msg message-hidden hidden"
+            >
+                Please fill every parameter!
+            </span>
+            <span
+                ref={modelYearErrorRef}
+                className="modelyear-error-msg hidden"
+            >
+                Model Year must be between 1930 and 2022!
+            </span>
         </form>
     );
 }

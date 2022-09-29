@@ -1,6 +1,7 @@
 .vehicle-list {
     list-style: none;
     font-size: 1.5rem;
+    width: 100%;
 }
 
 .vehicle-list-item {
@@ -11,6 +12,7 @@
     padding: 1.5rem;
     border-radius: 1rem;
     min-width: 20rem;
+    width: 100%;
     word-wrap: break-word;
 }
 

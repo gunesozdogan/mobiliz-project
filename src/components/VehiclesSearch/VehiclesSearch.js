@@ -17,7 +17,6 @@ export default function VehiclesSearch() {
     const handleClick = useCallback(
         e => {
             const parent = e.target.parentNode;
-            console.log(parent);
             dispatch(toggleEditForm());
             dispatch(
                 updateEditedVehicle(

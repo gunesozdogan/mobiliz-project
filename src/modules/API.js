@@ -38,12 +38,28 @@ const myAPI = (function () {
                 mode: "cors",
                 credentials: "include",
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization:
                         "Basic " + btoa("gunes.ozdogan95@gmail.com:12345"),
                 },
-                body: item,
+                body: JSON.stringify(item),
             }
         );
+    }
+
+    async function addVehicle(item) {
+        console.log(item);
+        fetch(`https://test001.testnet.mobiliz.com.tr/interview/vehicles`, {
+            method: "POST",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                    "Basic " + btoa("gunes.ozdogan95@gmail.com:12345"),
+            },
+            body: JSON.stringify(item),
+        });
     }
 
     async function getBrandModels(brand) {
@@ -63,6 +79,7 @@ const myAPI = (function () {
         return data;
     }
 
+    // returns id of the vehicle object according to brand/model combination
     async function getModelID(model, brand) {
         const data = await getBrandModels(brand);
 
@@ -77,6 +94,7 @@ const myAPI = (function () {
         getVehicles,
         deleteVehicle,
         editVehicle,
+        addVehicle,
         getBrandModels,
         getModelID,
     };
