@@ -6,6 +6,7 @@ import {
     showSearchSection,
     resetSearchedVehicles,
     resetEditedVehicle,
+    resetAddedVehicles,
 } from "../../actions";
 
 export default function Sidebar(props) {
@@ -18,11 +19,18 @@ export default function Sidebar(props) {
         dispatch(resetEditedVehicle());
     }, [dispatch]);
 
+    // Displays search vehicle section and resets added and edited vehicles in store
+    const displaySearchVehicleSection = useCallback(() => {
+        dispatch(showSearchSection());
+        dispatch(resetAddedVehicles());
+        dispatch(resetEditedVehicle());
+    }, [dispatch]);
+
     return (
         <div className="navbar">
             <div className="nav-search nav-section">
                 <button
-                    onClick={() => dispatch(showSearchSection())}
+                    onClick={displaySearchVehicleSection}
                     className="nav-search-btn nav-btn"
                 >
                     <svg

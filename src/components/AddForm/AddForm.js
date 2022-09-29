@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleAddForm, updateAddedVehicles } from "../../actions";
 import myUtility from "../../modules/utility";
 import "./AddForm.css";
@@ -14,8 +14,6 @@ export default function AddForm(props) {
     const plateRef = useRef(null);
     const notesRef = useRef(null);
 
-    // const addedVehicles = useSelector(state => state.addedVehicles.vehicles);
-
     // edits vehicle item in redux store and closes the edit form
     const handleAddClick = useCallback(() => {
         const newVehicle = myUtilityFunctions.Vehicle(
@@ -26,6 +24,7 @@ export default function AddForm(props) {
             notesRef.current.value
         );
         dispatch(updateAddedVehicles(newVehicle));
+        dispatch(toggleAddForm());
     }, [myUtilityFunctions, dispatch]);
 
     // handles cancel button

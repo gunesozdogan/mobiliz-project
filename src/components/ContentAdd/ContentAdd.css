@@ -3,3 +3,28 @@
     max-width: 300rem;
     width: 70vw;
 }
+
+.add-vehicle-btn {
+    background-color: var(--helper-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 0.6rem;
+    color: var(--header-text-color);
+    font-size: 1.4rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.add-vehicle-btn:hover {
+    background-color: var(--helper-hover-color);
+}
+
+.add-container {
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    min-width: 40rem;
+    gap: 1rem;
+    margin: 0 auto;
+    padding: 2rem;
+}

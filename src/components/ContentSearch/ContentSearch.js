@@ -7,7 +7,7 @@ import {
     updateModelInput,
     updateSearchedVehicles,
 } from "../../actions";
-import Vehicles from "../Vehicles/Vehicles";
+import VehiclesEdit from "../VehiclesEdit/VehiclesEdit";
 import myAPI from "../../modules/API";
 
 function ContentSearch() {
@@ -73,7 +73,7 @@ function ContentSearch() {
                 <div ref={errorMessageRef} className="hidden">
                     <p>At least one of the parameters should be entered!</p>
                 </div>
-                <Vehicles />
+                <VehiclesEdit />
             </div>
         </div>
     );

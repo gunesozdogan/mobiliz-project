@@ -38,7 +38,9 @@ const addedVehicleReducer = (state = [], action) => {
     switch (action.type) {
         case "updateAdded":
             return {
-                vehicles: action.payload,
+                vehicles: state.vehicles
+                    ? state.vehicles.concat(action.payload)
+                    : [action.payload],
             };
         case "deleteAdded":
             return {

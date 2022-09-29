@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Vehicles.css";
+import "./VehiclesEdit.css";
 import {
     deleteSearchedVehicle,
     toggleEditForm,
@@ -8,7 +8,7 @@ import {
 } from "../../actions";
 import myAPI from "../../modules/API";
 
-export default function Vehicles() {
+export default function VehiclesEdit() {
     const myAPIModule = myAPI;
     const vehicleData = useSelector(state => state.searchedVehicles);
     const dispatch = useDispatch();
@@ -17,6 +17,7 @@ export default function Vehicles() {
     const handleClick = useCallback(
         e => {
             const parent = e.target.parentNode;
+            console.log(parent);
             dispatch(toggleEditForm());
             dispatch(
                 updateEditedVehicle(
