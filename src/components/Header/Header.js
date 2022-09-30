@@ -6,20 +6,25 @@ import {
     toggleLoginForm,
     switchLoggedIn,
 } from "../../actions";
+import myAPI from "../../modules/API";
 
 export default function Header() {
+    const myAPIModule = myAPI;
+
     const dispatch = useDispatch();
     const themeColor = useSelector(state => state.themeColor);
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const accountBtnRef = useRef(null);
 
-    const displayLoginForm = () => {
+    const displayLoginForm = async () => {
         dispatch(toggleLoginForm());
     };
 
     const handleLogout = () => {
         dispatch(switchLoggedIn());
         dispatch(toggleLoginForm());
+        const location = myAPIModule.getLocation();
+        console.log(location);
     };
     return (
         <header className="header">

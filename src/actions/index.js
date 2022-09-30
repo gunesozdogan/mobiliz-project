@@ -16,6 +16,19 @@ export const toggleLoginForm = () => {
     };
 };
 
+export const showLocation = val => {
+    return {
+        type: "showLocation",
+        payload: val,
+    };
+};
+
+export const hideLocation = () => {
+    return {
+        type: "hideLocation",
+    };
+};
+
 export const updatePlateInput = val => {
     return {
         type: "plate",

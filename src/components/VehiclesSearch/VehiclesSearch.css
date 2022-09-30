@@ -45,7 +45,8 @@
     background-color: var(--helper-color);
 }
 
-.vehicle-item-edit {
+.vehicle-item-edit,
+.vehicle-item-location {
     background-color: transparent;
     border: none;
     color: var(--helper-color);
@@ -61,7 +62,8 @@
     border-radius: 1rem;
 }
 
-.vehicle-item-edit:hover {
+.vehicle-item-edit:hover,
+.vehicle-item-location:hover {
     background-color: var(--helper-color);
     color: #fff;
 }

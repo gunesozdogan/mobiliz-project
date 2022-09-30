@@ -4,6 +4,7 @@ import "./VehiclesSearch.css";
 import {
     deleteSearchedVehicle,
     toggleEditForm,
+    showLocation,
     updateEditedVehicle,
 } from "../../actions";
 import myAPI from "../../modules/API";
@@ -32,6 +33,12 @@ export default function VehiclesSearch() {
         [dispatch, vehicleData.vehicles]
     );
 
+    const handleLocationClick = async e => {
+        const id = e.target.parentNode.getAttribute("data-key");
+        const location = await myAPIModule.getLocation(id);
+        dispatch(showLocation(location));
+        return location;
+    };
     return (
         <div>
             <div className="vehicle-list-container">
@@ -66,6 +73,12 @@ export default function VehiclesSearch() {
                                               : ""}
                                       </span>
                                   </div>
+                                  <button
+                                      onClick={handleLocationClick}
+                                      className="vehicle-item-location"
+                                  >
+                                      Location
+                                  </button>
                                   <button
                                       onClick={handleClick}
                                       className="vehicle-item-edit"

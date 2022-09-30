@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import myAPI from "../../modules/API";
-import { switchLoggedIn, toggleLoginForm } from "../../actions";
+import { switchLoggedIn, toggleLoader, toggleLoginForm } from "../../actions";
 import "./LoginForm.css";
 import { useDispatch } from "react-redux";
 
@@ -13,14 +13,17 @@ function LoginForm() {
 
     const handleLoginClick = async () => {
         try {
+            dispatch(toggleLoader());
             const isLoggedIn = await myAPIModule.login(email, password);
             if (isLoggedIn) {
                 dispatch(switchLoggedIn());
                 dispatch(toggleLoginForm());
+                dispatch(toggleLoader());
             }
         } catch (err) {
             wrongCombinationErrorRef.current.className =
                 "wrong-combination-error-msg";
+            dispatch(toggleLoader());
         }
     };
 

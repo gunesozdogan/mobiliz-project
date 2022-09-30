@@ -7,7 +7,7 @@
 .search-container {
     display: flex;
     flex-direction: column;
-    width: 35%;
+    width: 45%;
     min-width: 40rem;
     gap: 1rem;
     margin: 0 auto;

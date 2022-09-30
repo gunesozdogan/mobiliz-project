@@ -114,6 +114,40 @@ const myAPI = (function () {
         return response.status === 200 ? true : false;
     }
 
+    // gets vehicle exact location
+    async function getLocation(id) {
+        try {
+            const coordResponse = await fetch(
+                "https://test001.testnet.mobiliz.com.tr/interview/locations",
+                {
+                    method: "GET",
+                    mode: "cors",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization:
+                            "Basic " + btoa("gunes.ozdogan95@gmail.com:12345"),
+                    },
+                }
+            );
+            // gets vehicle coordinates according to vehicle id
+            const coordData = await coordResponse.json();
+            const curLocation = coordData.filter(
+                item => item.vehicleId === Number(id)
+            );
+            const { latitude, longitude } = curLocation[0];
+
+            // google maps geocode api for returning vehicle location with vehicle coordinates
+            const locationsResponse = await fetch(
+                `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyBUoZRtWUNW0G6k-OkAeFENM3Ipd73JJ58`
+            );
+            const locationsData = await locationsResponse.json();
+            return locationsData.results[0]["formatted_address"];
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return {
         getVehicles,
         deleteVehicle,
@@ -122,6 +156,7 @@ const myAPI = (function () {
         getBrandModels,
         getModelID,
         login,
+        getLocation,
     };
 })();
 
