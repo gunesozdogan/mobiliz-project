@@ -78,6 +78,25 @@ const myAPI = (function () {
         return data;
     }
 
+    async function getAllBrands() {
+        const response = await fetch(
+            `https://test001.testnet.mobiliz.com.tr/interview/models`,
+            {
+                method: "GET",
+                mode: "cors",
+                credentials: "include",
+                headers: {
+                    Authorization:
+                        "Basic " + btoa("gunes.ozdogan95@gmail.com:12345"),
+                },
+            }
+        );
+        const data = await response.json();
+
+        let allBrands = data.map(item => item.brand);
+        allBrands = [...new Set(allBrands)];
+        return allBrands;
+    }
     // returns id of the vehicle object according to brand/model combination
     async function getModelID(model, brand) {
         const data = await getBrandModels(brand);
@@ -136,10 +155,9 @@ const myAPI = (function () {
             const curLocation = coordData.filter(
                 item => item.vehicleId === Number(id)
             );
-
+            // displays error message if location is not found
             if (curLocation.length === 0)
                 return "Something went wrong, please try again later!";
-
             const { latitude, longitude } = curLocation[0];
 
             // google maps geocode api for returning vehicle location with vehicle coordinates
@@ -159,6 +177,7 @@ const myAPI = (function () {
         editVehicle,
         addVehicle,
         getBrandModels,
+        getAllBrands,
         getModelID,
         login,
         getLocation,

@@ -36,7 +36,6 @@ export default function VehiclesSearch() {
     const handleLocationClick = async e => {
         try {
             const id = e.target.parentNode.parentNode.getAttribute("data-key");
-            console.log(id);
             const location = await myAPIModule.getLocation(id);
             dispatch(showLocation(location));
 

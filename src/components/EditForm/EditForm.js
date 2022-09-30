@@ -22,6 +22,14 @@ export default function EditForm(props) {
         state => state.searchedVehicles.vehicles
     );
 
+    const displayBrands = async () => {
+        const allBrands = await myAPIModule.getAllBrands();
+        myUtilityFunctions.createDropdownArray(
+            allBrands,
+            brandRef.current,
+            brandRef.current.value
+        );
+    };
     const displayRelatedModels = useCallback(async () => {
         try {
             const editedBrand = brandRef.current.value;
@@ -124,15 +132,17 @@ export default function EditForm(props) {
 
             <div className="input-container">
                 <label htmlFor="brand">Brand</label>
-                <input
-                    // onBlur={displayRelatedModels}
+                <select
+                    onFocus={displayBrands}
                     ref={brandRef}
                     className="input"
                     id="brand"
                     type="text"
                     defaultValue={props.brand}
                     autoComplete="off"
-                />
+                >
+                    <option value={props.brand}>{props.brand}</option>
+                </select>
             </div>
 
             <div className="input-container">

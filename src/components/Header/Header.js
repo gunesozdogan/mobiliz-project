@@ -23,8 +23,6 @@ export default function Header() {
     const handleLogout = () => {
         dispatch(switchLoggedIn());
         dispatch(toggleLoginForm());
-        const location = myAPIModule.getLocation();
-        console.log(location);
     };
     return (
         <header className="header">

@@ -31,14 +31,19 @@ const myUtility = (function () {
         selectElement.options.length = 0;
 
         models.forEach(element => {
-            arr.push({ text: element.model, value: element.model });
+            // gets models
+            if (element.model) {
+                arr.push({ text: element.model, value: element.model });
+                // gets brands
+            } else {
+                arr.push({ text: element, value: element });
+            }
         });
 
         // adds models as dropdown option
         arr.forEach(item =>
             selectElement.options.add(new Option(item.text, item.value))
         );
-
         selectElement.defaultValue = value;
         return arr;
     }

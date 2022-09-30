@@ -19,6 +19,14 @@ export default function AddForm(props) {
     const modelYearErrorRef = useRef(null);
     const brandErrorRef = useRef(null);
 
+    const displayBrands = async () => {
+        const allBrands = await myAPIModule.getAllBrands();
+        myUtilityFunctions.createDropdownArray(
+            allBrands,
+            brandRef.current,
+            brandRef.current.value
+        );
+    };
     // displays models according to brand choice
     const displayRelatedModels = useCallback(async () => {
         try {
@@ -122,14 +130,17 @@ export default function AddForm(props) {
 
             <div className="input-container">
                 <label htmlFor="brand">Brand</label>
-                <input
+                <select
+                    onFocus={displayBrands}
                     ref={brandRef}
                     className="input"
                     id="brand"
                     type="text"
                     defaultValue={props.brand}
                     autoComplete="off"
-                />
+                >
+                    <option value={props.brand}>{props.brand}</option>
+                </select>
             </div>
 
             <div className="input-container">

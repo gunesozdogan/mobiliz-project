@@ -28,16 +28,13 @@ function ContentSearch() {
         }
         // if at least 1 parameter is entered,continue
         errorMessageRef.current.className = "hidden";
-        let str = plateInput
-            ? `plate=${plateInput}&`
-            : "" + brandInput
-            ? `brand=${brandInput}&`
-            : "" + modelInput
-            ? `model=${modelInput}&`
-            : "";
+        let str =
+            (plateInput ? `plate=${plateInput}&` : "") +
+            (brandInput ? `brand=${brandInput}&` : "") +
+            (modelInput ? `model=${modelInput}&` : "");
         str = str.slice(0, -1);
-        dispatch(toggleLoader());
 
+        dispatch(toggleLoader());
         try {
             const data = await myAPIModule.getVehicles(str);
             dispatch(updateSearchedVehicles(data));
