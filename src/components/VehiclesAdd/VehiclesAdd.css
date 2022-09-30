@@ -25,45 +25,10 @@
 .left-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .vehicle-item-text-add {
     width: 100%;
     color: var(--text-color);
-}
-
-.vehicle-item-delete {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    border: 2px solid var(--helper-color);
-    cursor: pointer;
-    min-width: 2rem;
-    background-color: transparent;
-}
-
-.vehicle-item-delete:hover {
-    background-color: var(--helper-color);
-}
-
-.vehicle-item-edit {
-    background-color: transparent;
-    border: none;
-    color: var(--helper-color);
-    font-weight: 500;
-    font-size: 1.4rem;
-    justify-self: end;
-    padding-right: 4rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem 2rem;
-    border-radius: 1rem;
-}
-
-.vehicle-item-edit:hover {
-    background-color: var(--helper-color);
-    color: #fff;
 }

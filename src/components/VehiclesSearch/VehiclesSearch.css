@@ -23,26 +23,12 @@
 .left-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 2rem;
 }
 
 .vehicle-item-text-search {
     width: 100%;
     color: var(--text-color);
-}
-
-.vehicle-item-delete {
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    border: 2px solid var(--helper-color);
-    cursor: pointer;
-    min-width: 2rem;
-    background-color: transparent;
-}
-
-.vehicle-item-delete:hover {
-    background-color: var(--helper-color);
 }
 
 .vehicle-item-edit,
@@ -66,4 +52,20 @@
 .vehicle-item-location:hover {
     background-color: var(--helper-color);
     color: #fff;
+}
+
+.vehicle-item-delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-icon {
+    stroke: var(--text-color);
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.delete-icon:hover {
+    stroke-width: 2;
 }
