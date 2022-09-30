@@ -23,7 +23,7 @@ export default function AddForm(props) {
     const displayRelatedModels = useCallback(async () => {
         try {
             const editedBrand = brandRef.current.value;
-
+            // validation for brand input
             if (editedBrand === "") {
                 brandErrorRef.current.className = "brand-error-msg";
                 return;
@@ -32,7 +32,11 @@ export default function AddForm(props) {
 
             if (models.length === 0) {
                 brandErrorRef.current.className = "brand-error-msg";
+                modelRef.current.options.length = 0;
                 return;
+            } else {
+                brandErrorRef.current.className =
+                    "brand-error-msg message-hidden";
             }
             // creates dropdown selections
             myUtilityFunctions.createDropdownArray(

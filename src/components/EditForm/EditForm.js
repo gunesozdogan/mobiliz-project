@@ -16,6 +16,8 @@ export default function EditForm(props) {
     const notesRef = useRef(null);
     const missingParaErrorRef = useRef(null);
     const modelYearErrorRef = useRef(null);
+    const brandErrorRef = useRef(null);
+
     const searchedVehicles = useSelector(
         state => state.searchedVehicles.vehicles
     );
@@ -24,7 +26,15 @@ export default function EditForm(props) {
         try {
             const editedBrand = brandRef.current.value;
             const models = await myAPIModule.getBrandModels(editedBrand);
-
+            // validation for brand input
+            if (models.length === 0) {
+                brandErrorRef.current.className = "brand-error-msg";
+                modelRef.current.options.length = 0;
+                return;
+            } else {
+                brandErrorRef.current.className =
+                    "brand-error-msg message-hidden";
+            }
             // creates dropdown selections
             myUtilityFunctions.createDropdownArray(
                 models,
@@ -187,9 +197,12 @@ export default function EditForm(props) {
             </span>
             <span
                 ref={modelYearErrorRef}
-                className="modelyear-error-msg hidden"
+                className="modelyear-error-msg message-hidden hidden"
             >
                 Model Year must be between 1930 and 2022!
+            </span>
+            <span ref={brandErrorRef} className="brand-error-msg hidden">
+                Brand is not found!
             </span>
         </form>
     );

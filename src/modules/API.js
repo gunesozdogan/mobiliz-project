@@ -48,7 +48,6 @@ const myAPI = (function () {
     }
 
     async function addVehicle(item) {
-        console.log(item);
         fetch(`https://test001.testnet.mobiliz.com.tr/interview/vehicles`, {
             method: "POST",
             mode: "cors",
@@ -90,6 +89,31 @@ const myAPI = (function () {
         }
     }
 
+    async function login(email, password) {
+        const item = {
+            id: 0,
+            email,
+            password: String(password),
+        };
+
+        const response = await fetch(
+            `https://test001.testnet.mobiliz.com.tr/interview/login`,
+            {
+                method: "POST",
+                mode: "cors",
+                credentials: "include",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization:
+                        "Basic " + btoa("gunes.ozdogan95@gmail.com:12345"),
+                },
+                body: JSON.stringify(item),
+            }
+        );
+
+        return response.status === 200 ? true : false;
+    }
+
     return {
         getVehicles,
         deleteVehicle,
@@ -97,6 +121,7 @@ const myAPI = (function () {
         addVehicle,
         getBrandModels,
         getModelID,
+        login,
     };
 })();
 

@@ -10,6 +10,12 @@ export const showAddSection = () => {
     };
 };
 
+export const toggleLoginForm = () => {
+    return {
+        type: "toggleLoginForm",
+    };
+};
+
 export const updatePlateInput = val => {
     return {
         type: "plate",
@@ -106,5 +112,11 @@ export const updateEditedVehicle = val => {
 export const resetEditedVehicle = () => {
     return {
         type: "resetEdited",
+    };
+};
+
+export const switchLoggedIn = () => {
+    return {
+        type: "switchLoggedIn",
     };
 };

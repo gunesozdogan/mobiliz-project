@@ -1,5 +1,5 @@
 const switchShownSectionReducer = (
-    state = { search: true, add: false },
+    state = { search: true, add: false, login: false },
     action
 ) => {
     switch (action.type) {
@@ -12,4 +12,12 @@ const switchShownSectionReducer = (
     }
 };
 
-export default switchShownSectionReducer;
+const toggleLoginForm = (state = true, action) => {
+    switch (action.type) {
+        case "toggleLoginForm":
+            return !state;
+        default:
+            return state;
+    }
+};
+export { toggleLoginForm, switchShownSectionReducer };

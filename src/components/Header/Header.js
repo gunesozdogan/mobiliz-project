@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleThemeColor } from "../../actions";
+import {
+    toggleThemeColor,
+    toggleLoginForm,
+    switchLoggedIn,
+} from "../../actions";
 
 export default function Header() {
     const dispatch = useDispatch();
     const themeColor = useSelector(state => state.themeColor);
+    const isLoggedIn = useSelector(state => state.isLoggedIn);
+    const accountBtnRef = useRef(null);
+
+    const displayLoginForm = () => {
+        dispatch(toggleLoginForm());
+    };
+
+    const handleLogout = () => {
+        dispatch(switchLoggedIn());
+        dispatch(toggleLoginForm());
+    };
     return (
         <header className="header">
             <h1>Vehicle Control System</h1>
             <nav className="header-nav">
+                <button
+                    onClick={!isLoggedIn ? displayLoginForm : handleLogout}
+                    ref={accountBtnRef}
+                    className="account-btn"
+                >
+                    {!isLoggedIn ? "Login" : "Logout"}
+                </button>
                 <button
                     onClick={() => dispatch(toggleThemeColor())}
                     className="theme-color-switch-btn"

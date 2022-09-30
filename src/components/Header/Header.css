@@ -17,6 +17,24 @@
 
 .header-nav {
     padding-right: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.account-btn {
+    background-color: transparent;
+    border: none;
+    color: #eee;
+    font-size: 1.5rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.account-btn:hover {
+    color: #fff;
+    font-weight: 500;
 }
 
 .theme-color-switch-btn {
@@ -33,4 +51,5 @@
 
 .theme-icon:hover {
     stroke: #fff;
+    stroke-width: 3;
 }
