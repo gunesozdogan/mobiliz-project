@@ -9,7 +9,6 @@ import EditForm from "./components/EditForm/EditForm";
 import AddForm from "./components/AddForm/AddForm";
 import LoginForm from "./components/LoginForm/LoginForm";
 import { hideLocation } from "./actions";
-import { Dispatch } from "react";
 
 function App() {
     const isSearchSectionShown = useSelector(state => state.isShown.search);

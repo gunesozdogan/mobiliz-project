@@ -17,7 +17,7 @@ export default function VehiclesSearch() {
     // Displays edit page and uses edited vehicle properties as default values
     const handleClick = useCallback(
         e => {
-            const parent = e.target.parentNode;
+            const parent = e.target.parentNode.parentNode;
             dispatch(toggleEditForm());
             dispatch(
                 updateEditedVehicle(
@@ -34,10 +34,18 @@ export default function VehiclesSearch() {
     );
 
     const handleLocationClick = async e => {
-        const id = e.target.parentNode.getAttribute("data-key");
-        const location = await myAPIModule.getLocation(id);
-        dispatch(showLocation(location));
-        return location;
+        try {
+            const id = e.target.parentNode.parentNode.getAttribute("data-key");
+            console.log(id);
+            const location = await myAPIModule.getLocation(id);
+            dispatch(showLocation(location));
+
+            return location
+                ? location
+                : "Something went wrong please try again later!";
+        } catch (err) {
+            console.log(err);
+        }
     };
     return (
         <div>
@@ -65,7 +73,7 @@ export default function VehiclesSearch() {
                                           }}
                                           className="vehicle-item-delete"
                                       ></button>
-                                      <span className="vehicle-item-text">
+                                      <span className="vehicle-item-text-search">
                                           {vehicle.modelYear} - {vehicle.model}-{" "}
                                           {vehicle.brand} - {vehicle.plate}
                                           {vehicle.notes
@@ -73,18 +81,20 @@ export default function VehiclesSearch() {
                                               : ""}
                                       </span>
                                   </div>
-                                  <button
-                                      onClick={handleLocationClick}
-                                      className="vehicle-item-location"
-                                  >
-                                      Location
-                                  </button>
-                                  <button
-                                      onClick={handleClick}
-                                      className="vehicle-item-edit"
-                                  >
-                                      Edit
-                                  </button>
+                                  <div className="right-container">
+                                      <button
+                                          onClick={handleLocationClick}
+                                          className="vehicle-item-location"
+                                      >
+                                          Location
+                                      </button>
+                                      <button
+                                          onClick={handleClick}
+                                          className="vehicle-item-edit"
+                                      >
+                                          Edit
+                                      </button>
+                                  </div>
                               </li>
                           ))
                         : ""}

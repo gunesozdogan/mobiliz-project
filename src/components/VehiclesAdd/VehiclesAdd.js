@@ -18,7 +18,7 @@ export default function VehiclesAdd() {
                               className="vehicle-list-item"
                           >
                               <div className="left-container">
-                                  <span className="vehicle-item-text">
+                                  <span className="vehicle-item-text-add">
                                       {vehicle.modelYear} - {vehicle.model}-{" "}
                                       {vehicle.brand} - {vehicle.plate}
                                       {vehicle.notes

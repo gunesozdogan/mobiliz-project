@@ -1,6 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
     showAddSection,
     showSearchSection,
@@ -16,6 +16,7 @@ import {
 
 export default function Sidebar(props) {
     const dispatch = useDispatch();
+    const isSearchShown = useSelector(state => state.isShown.search);
 
     // Displays add vehicle section and resets searched and edited vehicles in store
     const displayAddVehicleSection = () => {
@@ -40,7 +41,11 @@ export default function Sidebar(props) {
             <div className="nav-search nav-section">
                 <button
                     onClick={displaySearchVehicleSection}
-                    className="nav-search-btn nav-btn"
+                    className={
+                        isSearchShown
+                            ? "nav-search-btn nav-btn selected"
+                            : "nav-search-btn nav-btn"
+                    }
                 >
                     <svg
                         className="nav-search-icon"
@@ -52,13 +57,17 @@ export default function Sidebar(props) {
                             <path d="M29.71,28.29l-6.5-6.5-.07,0a12,12,0,1,0-1.39,1.39s0,.05,0,.07l6.5,6.5a1,1,0,0,0,1.42,0A1,1,0,0,0,29.71,28.29ZM14,24A10,10,0,1,1,24,14,10,10,0,0,1,14,24Z" />
                         </g>
                     </svg>
-                    Search Vehicle
+                    Search/Edit Vehicle
                 </button>
             </div>
             <div className="nav-add nav-section">
                 <button
                     onClick={displayAddVehicleSection}
-                    className="nav-add-btn nav-btn"
+                    className={
+                        isSearchShown
+                            ? "nav-add-btn nav-btn"
+                            : "nav-add-btn nav-btn selected"
+                    }
                 >
                     <svg
                         className="nav-add-icon"

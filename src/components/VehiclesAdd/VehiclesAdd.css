@@ -28,8 +28,9 @@
     gap: 1rem;
 }
 
-.vehicle-item-text {
-    max-width: 20rem;
+.vehicle-item-text-add {
+    width: 100%;
+    color: var(--text-color);
 }
 
 .vehicle-item-delete {

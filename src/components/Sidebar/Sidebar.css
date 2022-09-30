@@ -1,6 +1,6 @@
 .navbar {
     width: 15vw;
-    min-width: 25rem;
+    min-width: 28rem;
     background-color: var(--nav-bkg-color);
     display: flex;
     flex-direction: column;
@@ -44,4 +44,8 @@
 [data-theme="dark"] .nav-search-icon,
 [data-theme="dark"] .nav-add-icon {
     fill: #fff;
+}
+
+.selected {
+    background-color: var(--nav-hover-color);
 }

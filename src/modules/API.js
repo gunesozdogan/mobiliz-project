@@ -132,9 +132,14 @@ const myAPI = (function () {
             );
             // gets vehicle coordinates according to vehicle id
             const coordData = await coordResponse.json();
+
             const curLocation = coordData.filter(
                 item => item.vehicleId === Number(id)
             );
+
+            if (curLocation.length === 0)
+                return "Something went wrong, please try again later!";
+
             const { latitude, longitude } = curLocation[0];
 
             // google maps geocode api for returning vehicle location with vehicle coordinates
