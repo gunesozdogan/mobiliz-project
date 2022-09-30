@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import "./Sidebar.css";
 import { useDispatch } from "react-redux";
 import {
@@ -18,7 +18,7 @@ export default function Sidebar(props) {
     const dispatch = useDispatch();
 
     // Displays add vehicle section and resets searched and edited vehicles in store
-    const displayAddVehicleSection = useCallback(() => {
+    const displayAddVehicleSection = () => {
         dispatch(showAddSection());
         dispatch(resetSearchedVehicles());
         dispatch(resetEditedVehicle());
@@ -26,14 +26,14 @@ export default function Sidebar(props) {
         dispatch(updateBrandInput());
         dispatch(updatePlateInput());
         dispatch(updateModelInput());
-    }, [dispatch]);
+    };
 
     // Displays search vehicle section and resets added and edited vehicles in store
-    const displaySearchVehicleSection = useCallback(() => {
+    const displaySearchVehicleSection = () => {
         dispatch(showSearchSection());
         dispatch(resetAddedVehicles());
         dispatch(resetEditedVehicle());
-    }, [dispatch]);
+    };
 
     return (
         <div className="navbar">

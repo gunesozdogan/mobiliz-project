@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useRef } from "react";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import {

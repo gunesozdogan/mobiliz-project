@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import myAPI from "../../modules/API";
 import { switchLoggedIn, toggleLoginForm } from "../../actions";
 import "./LoginForm.css";

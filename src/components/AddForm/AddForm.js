@@ -102,9 +102,9 @@ export default function AddForm(props) {
     }, [myUtilityFunctions, dispatch, myAPIModule]);
 
     // handles cancel button
-    const handleCancelClick = useCallback(() => {
+    const handleCancelClick = () => {
         dispatch(toggleAddForm());
-    }, [dispatch]);
+    };
 
     return (
         <form spellCheck="false" className="add-form">

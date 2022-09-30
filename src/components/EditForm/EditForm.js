@@ -102,9 +102,9 @@ export default function EditForm(props) {
     }, [myUtilityFunctions, props.id, searchedVehicles, dispatch, myAPIModule]);
 
     // handles cancel button
-    const handleCancelClick = useCallback(() => {
+    const handleCancelClick = () => {
         dispatch(toggleEditForm());
-    }, [dispatch]);
+    };
 
     return (
         <form spellCheck="false" className="edit-form">
