@@ -1,7 +1,7 @@
 {
     "name": "mobiliz-project",
     "version": "0.1.0",
-    "homepage": "https://gunesozdogan.github.io/react-gh-pages",
+    "homepage": "https://gunesozdogan.github.io/mobiliz-project",
     "private": true,
     "dependencies": {
         "@testing-library/jest-dom": "^5.16.5",
