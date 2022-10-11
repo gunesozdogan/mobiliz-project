@@ -1,6 +1,6 @@
 # mobiliz-project
 
-<a href="https://gunesozdogan.github.io/mobiliz-project/" name="demo">Live Demo</a>
+<a href="https://gunesozdogan.github.io/vehicle-control-system/" name="demo">Live Demo</a>
 
 -   App screenshots are at the bottom.
 
