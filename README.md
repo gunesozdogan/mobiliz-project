@@ -1,4 +1,3 @@
-# mobiliz-project
 
 <a href="https://gunesozdogan.github.io/vehicle-control-system/" name="demo">Live Demo</a>
 
